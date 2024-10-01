@@ -1,0 +1,37 @@
+@page "/login"
+
+<h3>Login</h3>
+
+<EditForm Model="@usuario" OnValidSubmit="@ProcesarLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <InputText @bind-Value="usuario.Nombre" class="form-control" id="nombre" />
+    </div>
+    <div class="form-group">
+        <label for="contrasena">Contraseña:</label>
+        <InputText @bind-Value="usuario.Contrasena" type="password" class="form-control" id="contrasena" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ingresar</button>
+</EditForm>
+
+@code {
+    private Usuario usuario = new Usuario();
+
+    private void ProcesarLogin()
+    {
+        // Aquí puedes implementar lógica de autenticación
+        if (usuario.Nombre == "admin" && usuario.Contrasena == "12345")
+        {
+            Console.WriteLine("Login exitoso");
+            // Aquí puedes redirigir o mostrar algún mensaje
+        }
+        else
+        {
+            Console.WriteLine("Credenciales incorrectas");
+        }
+    }
+}
